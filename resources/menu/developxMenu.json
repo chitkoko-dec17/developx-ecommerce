@@ -1,0 +1,33 @@
+{
+  "menu": [
+    {
+      "url": "/dashboard",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "dashboard"
+    },
+    {
+      "name": "Product Menu",
+      "icon": "menu-icon tf-icons bx bx-book-content",
+      "slug": "product",
+      "submenu": [
+        {
+          "url": "/product",
+          "name": "Product",
+          "slug": "product"
+        },
+        {
+          "url": "/category",
+          "name": "Category",
+          "slug": "product-category"
+        }
+      ]
+    },    
+    {
+      "url": "/customer",
+      "name": "Customer",
+      "icon": "menu-icon tf-icons bx bxs-user",
+      "slug": "customer"
+    }
+  ]
+}
