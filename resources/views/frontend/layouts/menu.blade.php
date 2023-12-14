@@ -102,6 +102,7 @@
                                           </span>
                                       </div>
                                       <span></span>
+                                      @if(Cart::count() > 0)
                                       <div class="minicart">
                                           <ul class="minicart-product-list">
                                           	@foreach(Cart::content() as $item)
@@ -129,6 +130,7 @@
                                               </a>
                                           </div>
                                       </div>
+                                      @endif
                                   </li>
                                   <!-- Header Mini Cart Area End Here -->
                               </ul>

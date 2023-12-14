@@ -88,6 +88,8 @@ class ProductController extends Controller
         $product->featured = $request->featured;
         $product->image = $image_path.$file_name;
         $product->quantity = $request->quantity;
+        $product->min_quantity = 5;
+        $product->status = 'active';
         $product->save();
 
         return redirect()->route('product.index')->with('success', 'New Product Added successfully.');

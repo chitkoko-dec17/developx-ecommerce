@@ -20,8 +20,19 @@
           "url": "/category",
           "name": "Category",
           "slug": "product-category"
+        },
+        {
+          "url": "/product-inventory",
+          "name": "Inventory",
+          "slug": "product-inventory"
         }
       ]
+    },
+    {
+      "url": "/order",
+      "name": "Orders",
+      "icon": "menu-icon tf-icons bx bx-shopping-bag",
+      "slug": "order"
     },    
     {
       "url": "/customer",

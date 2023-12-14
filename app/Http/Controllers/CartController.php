@@ -34,7 +34,7 @@ class CartController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function store(Product $product)
+    public function store(Request $request,Product $product)
     {
         $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
             return $cartItem->id === $product->id;
@@ -44,7 +44,9 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
-        Cart::add($product->id, $product->name, 1, $product->price)
+        $qty = isset($request->cart_qty) ? $request->cart_qty : 1 ; 
+
+        Cart::add($product->id, $product->name, $qty, $product->price)
             ->associate('App\Models\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
@@ -59,19 +61,13 @@ class CartController extends Controller
      */
     public function update(Request $request,$id)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'quantity' => 'required|numeric|between:1,5'
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'cart_qty.*' => 'required|numeric|between:1,99'
+        ]);
 
-        // if ($validator->fails()) {
-        //     session()->flash('errors', collect(['Quantity must be between 1 and 5.']));
-        //     return response()->json(['success' => false], 400);
-        // }
-
-        // if ($request->quantity > $request->productQuantity) {
-        //     session()->flash('errors', collect(['We currently do not have enough items in stock.']));
-        //     return response()->json(['success' => false], 400);
-        // }
+        if ($validator->fails()) {
+            return redirect()->route('cart.index')->with('errors', collect(['Quantity must be between 1 and 99.']));
+        }
 
         foreach($request['cart_item_ids'] as $key => $citemid){
             Cart::update($citemid, $request['cart_qty'][$key]);

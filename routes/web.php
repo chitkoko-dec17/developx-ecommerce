@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::group(['middleware' => ['prevent-back-history','auth']], function() {
 
 	// Product Route
 	Route::resource('product', ProductController::class);
+	Route::resource('product-inventory', InventoryController::class);
 
 	// Category Route
 	Route::resource('category', CategoryController::class);

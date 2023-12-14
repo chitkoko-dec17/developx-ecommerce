@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('customer_id')->unsigned()->nullable();
             $table->string('billing_email')->nullable();
-            $table->string('billing_name')->nullable();
             $table->string('billing_address')->nullable();
             $table->string('billing_city')->nullable();
             $table->string('billing_province')->nullable();
@@ -28,7 +27,6 @@ return new class extends Migration
             $table->integer('billing_tax');
             $table->integer('billing_total');
             $table->string('shipping_email')->nullable();
-            $table->string('shipping_name')->nullable();
             $table->string('shipping_address')->nullable();
             $table->string('shipping_city')->nullable();
             $table->string('shipping_province')->nullable();

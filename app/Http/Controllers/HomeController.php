@@ -15,24 +15,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $data['new_arrival'] = Product::latest()->take(9)->get();;
+        $data['new_arrival'] = Product::take(8)->inRandomOrder()->get();
+        $data['best_seller'] = Product::orderBy('id','DESC')->paginate(8);
+        $data['featured'] = Product::orderBy('id','ASC')->paginate(8);
         return view('frontend.index',compact('data'));
     }
 
     public function detail($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        // $mightAlsoLike = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
-        // $products_sa = DB::table('products')->orderBy('id','DESC')->paginate(4);
+        $data['product'] = Product::where('slug', $slug)->firstOrFail();
+        $data['mightAlsoLike'] = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
 
         // $stockLevel = getStockLevel($product->quantity);
 
-        return view('frontend.detail')->with([
-            'product' => $product,
-            // 'stockLevel' => $stockLevel,
-            // 'mightAlsoLike' => $mightAlsoLike,
-            // 'products_sa' => $products_sa,
-        ]);
+        return view('frontend.detail',compact('data'));
     }
 
     public function cart(Request $request)
