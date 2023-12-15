@@ -103,16 +103,16 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'total_coin' => 'integer'
-        ]);
+        // $request->validate([
+        //     'total_coin' => 'integer'
+        // ]);
         
-        $customer = Customer::find($id);
-        $customer->total_coin = $request->total_coin;
-        $customer->status = $request->status;
-        $customer->save();
+        // $customer = Customer::find($id);
+        // $customer->total_coin = $request->total_coin;
+        // $customer->status = $request->status;
+        // $customer->save();
 
-        return redirect()->route('customer.index')->with('success','Customer has been updated successfully!');
+        // return redirect()->route('customer.index')->with('success','Customer has been updated successfully!');
     }
 
     /**

@@ -52,7 +52,7 @@ class AuthController extends Controller
                         ->withSuccess('You have Successfully loggedin');
         }
   
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect("admin/login")->withSuccess('Oppes! You have entered invalid credentials');
     }
       
     /**
@@ -85,7 +85,7 @@ class AuthController extends Controller
             return view('dashboard');
         }
   
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("admin/login")->withSuccess('Opps! You do not have access');
     }
     
     /**
@@ -111,6 +111,6 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('login');
+        return Redirect('admin/login');
     }
 }

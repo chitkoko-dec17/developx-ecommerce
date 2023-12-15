@@ -22,9 +22,13 @@
                                       <div class="ht-setting-trigger"><span>Setting</span></div>
                                       <div class="setting ht-setting">
                                           <ul class="ht-setting-list">
-                                              <li><a href="/customer/login">My Account</a></li>
+                                            @if( auth()->guard('customer')->check() )
+                                              <li><a href="/profile">My Account</a></li>
                                               <li><a href="/checkout">Checkout</a></li>
+                                              <li><a href="/logout">Logout</a></li>
+                                            @else
                                               <li><a href="/customer/login">Sign In</a></li>
+                                            @endif
                                           </ul>
                                       </div>
                                   </li>

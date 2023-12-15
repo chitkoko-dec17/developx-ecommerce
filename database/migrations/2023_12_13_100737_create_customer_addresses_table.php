@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customer_addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('customer_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->string('address_type')->nullable();
             $table->string('company_name')->nullable();
             $table->string('address')->nullable();

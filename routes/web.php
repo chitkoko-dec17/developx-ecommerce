@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\Auth\CustomerAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,25 +32,34 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/detail/{product}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/wishlist', [HomeController::class, 'wishlist']);
-Route::get('/checkout', [HomeController::class, 'checkout']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/product_list', [HomeController::class, 'product_list']);
-Route::get('/customer/login', [HomeController::class, 'login']);
+Route::get('/customer/login', [HomeController::class, 'login'])->name('customer.login');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
 Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index'); //->middleware('auth')
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index')->middleware('auth.customer');
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/thankyou', [CheckoutController::class, 'thankyou'])->name('confirmation.index');
 
 Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.index');
 
-Route::group(['middleware' => ['prevent-back-history','auth']], function() {
+//customer login & register route
+// Route::get('/register', 'CustomerController@create');
+Route::post('/register', [CustomerAuthController::class, 'register'])->name('customer.register');
+// Route::get('/login', 'SessionsController@create');
+Route::post('/login', [CustomerAuthController::class, 'login'])->name('customer.login');
+Route::get('/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
+
+
+Route::group(['prefix'=>'admin','middleware' => ['prevent-back-history','auth']], function() {
    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 	// Dashboard Route
+	Route::get('/','App\Http\Controllers\Dashboard@index')->name('dashboard');
 	Route::get('/dashboard','App\Http\Controllers\Dashboard@index')->name('dashboard');
 
 	// User Route
@@ -57,7 +67,7 @@ Route::group(['middleware' => ['prevent-back-history','auth']], function() {
 
 	// Admin Route
 	Route::post('/change-password', [AdminController::class, 'updatePassword'])->name('update-password');
-	Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+	Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 	Route::post('profile/update', [AdminController::class, 'updateprofile'])->name('profile.update');
 
 	// Customer Route
@@ -72,7 +82,7 @@ Route::group(['middleware' => ['prevent-back-history','auth']], function() {
 	Route::resource('category', CategoryController::class);
 });
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('/admin/login', [AuthController::class, 'index'])->name('login');
+Route::post('/admin/post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 // Route::get('registration', [AuthController::class, 'registration'])->name('register');
 // Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');

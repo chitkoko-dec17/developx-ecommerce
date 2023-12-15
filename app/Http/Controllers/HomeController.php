@@ -61,9 +61,11 @@ class HomeController extends Controller
         return view('frontend.product');
     }
 
-    public function login(Request $request)
+    public function login()
     {
-        
+        if( auth()->guard('customer')->check() ){
+            return redirect('/');
+        }
         return view('frontend.login');
     }
 

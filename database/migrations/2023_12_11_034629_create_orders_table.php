@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('customer_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('customer_id');
             $table->string('billing_email')->nullable();
             $table->string('billing_address')->nullable();
             $table->string('billing_city')->nullable();

@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "url": "/dashboard",
+      "url": "/admin/dashboard",
       "name": "Dashboard",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard"
@@ -12,30 +12,30 @@
       "slug": "product",
       "submenu": [
         {
-          "url": "/product",
+          "url": "/admin/product",
           "name": "Product",
           "slug": "product"
         },
         {
-          "url": "/category",
+          "url": "/admin/category",
           "name": "Category",
           "slug": "product-category"
         },
         {
-          "url": "/product-inventory",
+          "url": "/admin/product-inventory",
           "name": "Inventory",
           "slug": "product-inventory"
         }
       ]
     },
     {
-      "url": "/order",
+      "url": "/admin/order",
       "name": "Orders",
       "icon": "menu-icon tf-icons bx bx-shopping-bag",
       "slug": "order"
     },    
     {
-      "url": "/customer",
+      "url": "/admin/customer",
       "name": "Customer",
       "icon": "menu-icon tf-icons bx bxs-user",
       "slug": "customer"
