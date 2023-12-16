@@ -19,18 +19,17 @@
                               <ul class="ht-menu">
                                   <!-- Begin Setting Area -->
                                   <li>
+                                    @if( auth()->guard('customer')->check() )
                                       <div class="ht-setting-trigger"><span>Setting</span></div>
                                       <div class="setting ht-setting">
                                           <ul class="ht-setting-list">
-                                            @if( auth()->guard('customer')->check() )
                                               <li><a href="/profile">My Account</a></li>
-                                              <li><a href="/checkout">Checkout</a></li>
                                               <li><a href="/logout">Logout</a></li>
-                                            @else
-                                              <li><a href="/customer/login">Sign In</a></li>
-                                            @endif
                                           </ul>
                                       </div>
+                                    @else
+                                      <div class=""><span><a href="/customer/login">Sign In</a></span></div>
+                                    @endif
                                   </li>
                                   <!-- Setting Area End Here -->
                                   <!-- Begin Currency Area -->
@@ -92,7 +91,7 @@
                                   <!-- Begin Header Middle Wishlist Area -->
                                   <li class="hm-wishlist">
                                       <a href="/wishlist">
-                                          <span class="cart-item-count wishlist-item-count">0</span>
+                                          <span class="cart-item-count wishlist-item-count">{{Cart::instance('wishlist')->count()}}</span>
                                           <i class="fa fa-heart-o"></i>
                                       </a>
                                   </li>
@@ -101,15 +100,15 @@
                                   <li class="hm-minicart">
                                       <div class="hm-minicart-trigger">
                                           <span class="item-icon"></span>
-                                          <span class="item-text">{{Cart::total()}}
-                                              <span class="cart-item-count">{{Cart::count()}}</span>
+                                          <span class="item-text">{{Cart::instance('shopping')->total()}}
+                                              <span class="cart-item-count">{{Cart::instance('shopping')->count()}}</span>
                                           </span>
                                       </div>
                                       <span></span>
-                                      @if(Cart::count() > 0)
+                                      @if(Cart::instance('shopping')->count() > 0)
                                       <div class="minicart">
                                           <ul class="minicart-product-list">
-                                          	@foreach(Cart::content() as $item)
+                                          	@foreach(Cart::instance('shopping')->content() as $item)
                                               <li>
                                                   <a href="/detail" class="minicart-product-image">
                                                       <img src="{{ productImage($item->model->image) }}" alt="cart products">
@@ -124,7 +123,7 @@
                                               </li>
                                              @endforeach
                                           </ul>
-                                          <p class="minicart-total">SUBTOTAL: <span>{{Cart::total()}}</span></p>
+                                          <p class="minicart-total">SUBTOTAL: <span>{{Cart::instance('shopping')->total()}}</span></p>
                                           <div class="minicart-button">
                                               <a href="/cart" class="li-button li-button-fullwidth li-button-dark">
                                                   <span>View Full Cart</span>

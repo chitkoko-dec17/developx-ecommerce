@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\Auth\CustomerAuthController;
@@ -30,8 +31,6 @@ use App\Http\Controllers\Auth\CustomerAuthController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/detail/{product}', [HomeController::class, 'detail'])->name('detail');
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/wishlist', [HomeController::class, 'wishlist']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/product_list', [HomeController::class, 'product_list']);
 Route::get('/customer/login', [HomeController::class, 'login'])->name('customer.login');
@@ -40,18 +39,19 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
 Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->name('wishlist.store');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index')->middleware('auth.customer');
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/thankyou', [CheckoutController::class, 'thankyou'])->name('confirmation.index');
 
-Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.index');
+// Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.index');
 
 //customer login & register route
-// Route::get('/register', 'CustomerController@create');
 Route::post('/register', [CustomerAuthController::class, 'register'])->name('customer.register');
-// Route::get('/login', 'SessionsController@create');
-Route::post('/login', [CustomerAuthController::class, 'login'])->name('customer.login');
+Route::post('/login', [CustomerAuthController::class, 'login'])->name('customer.add');
 Route::get('/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
 
 
@@ -60,7 +60,7 @@ Route::group(['prefix'=>'admin','middleware' => ['prevent-back-history','auth']]
 
 	// Dashboard Route
 	Route::get('/','App\Http\Controllers\Dashboard@index')->name('dashboard');
-	Route::get('/dashboard','App\Http\Controllers\Dashboard@index')->name('dashboard');
+	Route::get('/dashboard','App\Http\Controllers\Dashboard@index')->name('dashboard.index');
 
 	// User Route
 	Route::resource('user', UserController::class); 

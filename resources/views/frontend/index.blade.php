@@ -126,9 +126,9 @@
                                           <div class="add-actions">
                                               <ul class="add-actions-link">
                                                   @if ($newarrival->quantity > 0)
-                                                    <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $newarrival) }}">Add to cart</a></li>
+                                                    <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $newarrival) }}" href="javascript:void(0)">Add to cart</a></li>
                                                   @endif
-                                                  <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                  <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $newarrival) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                   <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                               </ul>
                                           </div>
@@ -180,7 +180,7 @@
                                                   @if ($bestseller->quantity > 0)
                                                     <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $bestseller) }}">Add to cart</a></li>
                                                   @endif
-                                                  <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                  <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $bestseller) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                   <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                               </ul>
                                           </div>
@@ -231,7 +231,7 @@
                                                   @if ($featurep->quantity > 0)
                                                     <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $featurep) }}">Add to cart</a></li>
                                                   @endif
-                                                  <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                  <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $featurep) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                   <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                               </ul>
                                           </div>
@@ -341,7 +341,7 @@
                                                           @if ($product->quantity > 0)
                                                             <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $product) }}">Add to cart</a></li>
                                                           @endif
-                                                          <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                          <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $product) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                           <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                       </ul>
                                                   </div>
@@ -392,7 +392,7 @@
                                                           @if ($product->quantity > 0)
                                                             <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $product) }}">Add to cart</a></li>
                                                           @endif
-                                                          <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                          <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $product) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                           <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                       </ul>
                                                   </div>
@@ -444,7 +444,7 @@
                                                           @if ($product->quantity > 0)
                                                             <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $product) }}">Add to cart</a></li>
                                                           @endif
-                                                          <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                          <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $product) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                           <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                       </ul>
                                                   </div>
@@ -513,7 +513,7 @@
                                                   @if ($product->quantity > 0)
                                                     <li class="add-cart active"><a class="add-to-card" data-id="{{ route('cart.store', $product) }}">Add to cart</a></li>
                                                   @endif
-                                                  <li><a class="links-details" href="/wishlist"><i class="fa fa-heart-o"></i></a></li>
+                                                  <li><a class="links-details add-to-wishlist" data-id="{{ route('wishlist.store', $product) }}" href="javascript:void(0)"><i class="fa fa-heart-o"></i></a></li>
                                                   <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                               </ul>
                                           </div>

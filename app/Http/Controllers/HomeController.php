@@ -31,23 +31,6 @@ class HomeController extends Controller
         return view('frontend.detail',compact('data'));
     }
 
-    public function cart(Request $request)
-    {
-        
-        return view('frontend.cart');
-    }
-
-    public function wishlist(Request $request)
-    {
-        
-        return view('frontend.wishlist');
-    }
-
-    public function checkout(Request $request)
-    {
-        
-        return view('frontend.checkout');
-    }
 
     public function contact(Request $request)
     {

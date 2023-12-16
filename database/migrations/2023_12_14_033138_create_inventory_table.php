@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('inventory', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('product_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedInteger('quantity')->default(10);
             $table->string('description',500)->nullable();
             $table->timestamps();

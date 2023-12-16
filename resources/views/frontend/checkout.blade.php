@@ -58,7 +58,7 @@
                               <div class="row">
                                   <div class="col-md-6">
                                       <div class="checkout-form-list">
-                                          <label for="billing_first_name">First Name <span class="required">*</span></label>
+                                          <label>First Name <span class="required">*</span></label>
                                           <input placeholder="" name="billing_first_name" type="text" value="{{old('billing_first_name', $customer->first_name)}}">
                                           @error('billing_first_name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -67,7 +67,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="checkout-form-list">
-                                          <label for="billing_last_name">Last Name <span class="required">*</span></label>
+                                          <label>Last Name <span class="required">*</span></label>
                                           <input placeholder="" name="billing_last_name" type="text" value="{{old('billing_last_name', $customer->last_name)}}">
                                           @error('billing_last_name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -76,13 +76,13 @@
                                   </div>
                                   <div class="col-md-12">
                                       <div class="checkout-form-list">
-                                          <label for="billing_company_name">Company Name</label>
+                                          <label>Company Name</label>
                                           <input placeholder="" name="billing_company_name" type="text" value="{{old('billing_company_name')}}">
                                       </div>
                                   </div>
                                   <div class="col-md-12">
                                       <div class="checkout-form-list">
-                                          <label for="billing_address">Address <span class="required">*</span></label>
+                                          <label>Address <span class="required">*</span></label>
                                           <input placeholder="Street address" name="billing_address" type="text" value="{{old('billing_address')}}">
                                           @error('billing_address')
                                             <span class="text-danger">{{ $message }}</span>
@@ -96,7 +96,7 @@
                                   </div>
                                   <div class="col-md-12">
                                       <div class="checkout-form-list">
-                                          <label for="billing_city">Town / City <span class="required">*</span></label>
+                                          <label>Town / City <span class="required">*</span></label>
                                           <input type="text" name="billing_city" value="{{old('billing_city')}}">
                                           @error('billing_city')
                                             <span class="text-danger">{{ $message }}</span>
@@ -105,7 +105,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="checkout-form-list">
-                                          <label for="billing_province">State <span class="required">*</span></label>
+                                          <label>State <span class="required">*</span></label>
                                           <input placeholder="" type="text" name="billing_province" value="{{old('billing_province')}}">
                                           @error('billing_province')
                                             <span class="text-danger">{{ $message }}</span>
@@ -114,7 +114,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="checkout-form-list">
-                                          <label for="billing_postalcode">Postcode / Zip <span class="required">*</span></label>
+                                          <label>Postcode / Zip <span class="required">*</span></label>
                                           <input placeholder="" type="text" name="billing_postalcode" value="{{old('billing_postalcode')}}">
                                           @error('billing_postalcode')
                                             <span class="text-danger">{{ $message }}</span>
@@ -124,7 +124,7 @@
 
                                   <div class="col-md-12">
                                       <div class="country-select clearfix">
-                                          <label for="billing_country">Country <span class="required">*</span></label>
+                                          <label>Country <span class="required">*</span></label>
                                           <select class="nice-select wide" name="billing_country">
                                             @foreach(countries() as $ckey => $country)
                                               <option value="{{$ckey}}" data-display="{{$country}}">{{$country}}</option>
@@ -134,7 +134,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="checkout-form-list">
-                                          <label for="billing_email">Email Address <span class="required">*</span></label>
+                                          <label>Email Address <span class="required">*</span></label>
                                           <input placeholder="" type="email" name="billing_email" value="{{old('billing_email')}}">
                                           @error('billing_email')
                                             <span class="text-danger">{{ $message }}</span>
@@ -143,7 +143,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="checkout-form-list">
-                                          <label for="billing_phone">Phone </label>
+                                          <label>Phone </label>
                                           <input type="text" name="billing_phone" value="{{old('billing_phone')}}">
                                       </div>
                                   </div>
@@ -158,7 +158,7 @@
                                   <div id="ship-box-info" class="row">
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_first_name">First Name <span class="required">*</span></label>
+                                              <label>First Name <span class="required">*</span></label>
                                               <input placeholder="" name="shipping_first_name" type="text" value="{{old('shipping_first_name')}}">
                                               @error('shipping_first_name')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -167,7 +167,7 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_last_name">Last Name <span class="required">*</span></label>
+                                              <label>Last Name <span class="required">*</span></label>
                                               <input placeholder="" name="shipping_last_name" type="text" value="{{old('shipping_last_name')}}">
                                               @error('shipping_last_name')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -176,13 +176,13 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_company_name">Company Name</label>
+                                              <label>Company Name</label>
                                               <input placeholder="" name="shipping_company_name" type="text" value="{{old('shipping_company_name')}}">
                                           </div>
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_address">Address <span class="required">*</span></label>
+                                              <label>Address <span class="required">*</span></label>
                                               <input placeholder="Street address" name="shipping_address" type="text" value="{{old('shipping_address')}}">
                                               @error('shipping_address')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -196,7 +196,7 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_city">Town / City <span class="required">*</span></label>
+                                              <label>Town / City <span class="required">*</span></label>
                                               <input type="text" name="shipping_city" value="{{old('shipping_city')}}">
                                               @error('shipping_city')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -205,7 +205,7 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_province">State <span class="required">*</span></label>
+                                              <label>State <span class="required">*</span></label>
                                               <input placeholder="" type="text" name="shipping_province" value="{{old('shipping_province')}}">
                                               @error('shipping_province')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -214,7 +214,7 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_postalcode">Postcode / Zip <span class="required">*</span></label>
+                                              <label>Postcode / Zip <span class="required">*</span></label>
                                               <input placeholder="" type="text" name="shipping_postalcode" value="{{old('shipping_postalcode')}}">
                                               @error('shipping_postalcode')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -223,7 +223,7 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="country-select clearfix">
-                                              <label for="shipping_country">Country <span class="required">*</span></label>
+                                              <label>Country <span class="required">*</span></label>
                                               <select class="nice-select wide" name="shipping_country">
                                                 @foreach(countries() as $ckey => $country)
                                                   <option value="{{$ckey}}" data-display="{{$country}}">{{$country}}</option>
@@ -233,7 +233,7 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_email">Email Address <span class="required">*</span></label>
+                                              <label>Email Address <span class="required">*</span></label>
                                               <input placeholder="" type="email" name="shipping_email" value="{{old('shipping_email')}}">
                                               @error('shipping_email')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -242,14 +242,14 @@
                                       </div>
                                       <div class="col-md-12">
                                           <div class="checkout-form-list">
-                                              <label for="shipping_phone">Phone </label>
+                                              <label>Phone </label>
                                               <input type="text" name="shipping_phone" value="{{old('shipping_phone')}}">
                                           </div>
                                       </div>
                                   </div>
                                   <div class="order-notes">
                                       <div class="checkout-form-list">
-                                          <label for="order_note">Order Notes</label>
+                                          <label>Order Notes</label>
                                           <textarea id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery." name="order_note">{{old('order_note')}}</textarea>
                                       </div>
                                   </div>

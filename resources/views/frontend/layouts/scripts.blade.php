@@ -76,4 +76,11 @@
 	
 	$('.alert-success').delay(5000).fadeOut('slow');
 
+	$(document).on('click', '.wishlist_dele_id', function() {
+        $('#deleteModal').modal('show');
+        let href = $(this).attr('data-attr');
+        console.log(href);
+        $('#delete-pro').attr('action', href);
+    });
+
 </script>

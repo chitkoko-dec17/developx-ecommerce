@@ -16,30 +16,31 @@
           </div>
       </div>
       <!-- Li's Breadcrumb Area End Here -->
-      {{-- success error msg start --}}
-      @if(session()->has('success_message'))
-        <div class="alert alert-success">
-            {{session()->get('success_message')}}
-        </div>
-      @endif
-
-      @if(count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-      @endif
-      {{-- success error msg end --}}
-      <hr>
-
+      
       <!--Shopping Cart Area Strat-->
       <div class="Shopping-cart-area pt-60 pb-60">
           <div class="container">
               <div class="row">
-                  @if(Cart::count() > 0)
+                  <div class="col-12">
+                    {{-- success error msg start --}}
+                    @if(session()->has('success_message'))
+                      <div class="alert alert-success">
+                          {{session()->get('success_message')}}
+                      </div>
+                    @endif
+
+                    @if(count($errors) > 0)
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach($errors->all() as $error)
+                                  <li>{{$error}}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                    @endif
+                    {{-- success error msg end --}}
+                  </div>
+                  @if(Cart::instance('shopping')->count() > 0)
                   <div class="col-12">
                       <form action="{{route('cart.update',1)}}" method="POST">
                         @csrf
@@ -57,7 +58,7 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      @foreach(Cart::content() as $item)
+                                      @foreach(Cart::instance('shopping')->content() as $item)
                                       <tr>
                                           <td class="li-product-remove">
                                             <input type="hidden" name="cart_item_ids[]" value="{{$item->rowId}}">
@@ -99,8 +100,8 @@
                                   <div class="cart-page-total">
                                       <h2>Cart totals</h2>
                                       <ul>
-                                          <li>Subtotal <span>{{Cart::subtotal()}}</span></li>
-                                          <li>Total <span>{{Cart::total()}}</span></li>
+                                          <li>Subtotal <span>{{Cart::instance('shopping')->subtotal()}}</span></li>
+                                          <li>Total <span>{{Cart::instance('shopping')->total()}}</span></li>
                                       </ul>
                                       <a href="{{route('checkout.index')}}">Proceed to checkout</a>
                                   </div>

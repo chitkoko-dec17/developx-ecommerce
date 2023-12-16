@@ -22,7 +22,7 @@
               <div class="row">
                   <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
                       <!-- Login Form s-->
-                      <form action="{{ route('customer.login') }}" method="post">
+                      <form action="{{ route('customer.add') }}" method="post">
                         @csrf
                           <div class="login-form">
                               <h4 class="login-title">Login</h4>

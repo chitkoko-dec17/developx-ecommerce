@@ -113,5 +113,11 @@
             $('#add-item').attr('action', href);
             $('form[name=add_item]').submit();
         });
+
+        $(document).on('click', '.add-to-wishlist', function() {
+            let href = $(this).attr('data-id');
+            $('#add-item').attr('action', href);
+            $('form[name=add_item]').submit();
+        });
       </script>
       @endsection

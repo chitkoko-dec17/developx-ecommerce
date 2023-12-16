@@ -36,7 +36,7 @@ class CartController extends Controller
      */
     public function store(Request $request,Product $product)
     {
-        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
+        $duplicates = Cart::instance('shopping')->search(function ($cartItem, $rowId) use ($product) {
             return $cartItem->id === $product->id;
         });
 
@@ -46,7 +46,7 @@ class CartController extends Controller
 
         $qty = isset($request->cart_qty) ? $request->cart_qty : 1 ; 
 
-        Cart::add($product->id, $product->name, $qty, $product->price)
+        Cart::instance('shopping')->add($product->id, $product->name, $qty, $product->price)
             ->associate('App\Models\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
@@ -70,7 +70,7 @@ class CartController extends Controller
         }
 
         foreach($request['cart_item_ids'] as $key => $citemid){
-            Cart::update($citemid, $request['cart_qty'][$key]);
+            Cart::instance('shopping')->update($citemid, $request['cart_qty'][$key]);
         }
         
         return redirect()->route('cart.index')->with('success_message', 'Quantity was updated successfully!');
@@ -84,34 +84,9 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::remove($id);
+        Cart::instance('shopping')->remove($id);
 
         return back()->with('success_message', 'Item has been removed!');
     }
 
-    /**
-     * Switch item for shopping cart to Save for Later.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function switchToSaveForLater($id)
-    {
-        $item = Cart::get($id);
-
-        Cart::remove($id);
-
-        $duplicates = Cart::instance('saveForLater')->search(function ($cartItem, $rowId) use ($id) {
-            return $rowId === $id;
-        });
-
-        if ($duplicates->isNotEmpty()) {
-            return redirect()->route('cart.index')->with('success_message', 'Item is already Saved For Later!');
-        }
-
-        Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
-            ->associate('App\Models\Product');
-
-        return redirect()->route('cart.index')->with('success_message', 'Item has been Saved For Later!');
-    }
 }

@@ -23,7 +23,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        if (Cart::instance('default')->count() == 0) {
+        if (Cart::instance('shopping')->count() == 0) {
             return redirect()->route('cart.index');
         }
 
@@ -70,7 +70,7 @@ class CheckoutController extends Controller
             // decrease the quantities of all the products in the cart
             $this->decreaseQuantities();
 
-            Cart::instance('default')->destroy(); //cart clear
+            Cart::instance('shopping')->destroy(); //cart clear
 
             return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         } catch (\Illuminate\Database\QueryException $exception) {
@@ -95,8 +95,8 @@ class CheckoutController extends Controller
             'billing_country' => $request->billing_country,
             'billing_phone' => $request->billing_phone,
             'billing_name_on_card' => $request->billing_name_on_card,
-            'billing_subtotal' => Cart::total(),
-            'billing_total' => Cart::total(),
+            'billing_subtotal' => Cart::instance('shopping')->total(),
+            'billing_total' => Cart::instance('shopping')->total(),
             'shipping_email' => $request->shipping_email,
             'shipping_first_name' => $request->shipping_first_name,
             'shipping_last_name' => $request->shipping_last_name,
@@ -115,7 +115,7 @@ class CheckoutController extends Controller
         ]);
 
         // Insert into order_product table
-        foreach (Cart::content() as $item) {
+        foreach (Cart::instance('shopping')->content() as $item) {
             OrderProduct::create([
                 'order_id' => $order->id,
                 'product_id' => $item->model->id,
@@ -128,14 +128,14 @@ class CheckoutController extends Controller
 
     protected function decreaseQuantities()
     {
-        foreach (Cart::content() as $item) {
+        foreach (Cart::instance('shopping')->content() as $item) {
             Product::where('id', $item->model->id)->decrement('quantity', $item->qty);
         }
     }
 
     protected function productsAreNoLongerAvailable()
     {
-        foreach (Cart::content() as $item) {
+        foreach (Cart::instance('shopping')->content() as $item) {
             $product = Product::find($item->model->id);
             if ($product->quantity < $item->qty) {
                 return true;
@@ -146,11 +146,6 @@ class CheckoutController extends Controller
     }
 
     public function thankyou(){
-        $customer = array();
-        if( auth()->guard('customer')->check() ){
-            $customer = Customer::where('id', Auth::guard('customer')->id())->first();
-        }
-
-        return view('frontend.thankyou', compact('customer'));
+        return view('frontend.thankyou');
     }
 }
