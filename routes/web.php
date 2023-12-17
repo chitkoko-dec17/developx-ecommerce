@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
@@ -77,6 +78,9 @@ Route::group(['prefix'=>'admin','middleware' => ['prevent-back-history','auth']]
 	// Product Route
 	Route::resource('product', ProductController::class);
 	Route::resource('product-inventory', InventoryController::class);
+	Route::resource('order', OrderController::class);
+
+	Route::get('/export-csv', [OrderController::class, 'exportCSV'])->name('export.csv');
 
 	// Category Route
 	Route::resource('category', CategoryController::class);

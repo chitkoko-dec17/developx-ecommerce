@@ -7,7 +7,7 @@
 	<h4 class="fw-bold"><span class="text-muted fw-light">Customer /</span> Edit</h4>
 </div>
 <div class="layout-demo-wrapper create_btn_fix">
-	<a href="{{ url('customer') }}" role="button" class="btn btn-icon btn-primary a_btn_fix">
+	<a href="{{ route('customer.index') }}" role="button" class="btn btn-icon btn-primary a_btn_fix">
 	    <span class="tf-icons bx bxs-left-arrow-circle"></span>
   	</a>
 </div>
@@ -26,7 +26,7 @@
           	<div class="row mb-3">
 	            <label class="col-sm-2 col-form-label" for="name">Name</label>
 	            <div class="col-sm-10">
-	              <input type="text" class="form-control" id="name" value="{{ $customer->name }}" readonly />
+	              <input type="text" class="form-control" id="name" value="{{ $customer->first_name .' '. $customer->last_name}}" readonly />
 	            </div>
           	</div>
           	<!-- <div class="row mb-3">
@@ -49,12 +49,9 @@
 	            </div>
           	</div> -->
           	<div class="row mb-3">
-	            <label class="col-sm-2 col-form-label" for="total_coin">Total Coin</label>
+	            <label class="col-sm-2 col-form-label" for="email">Email</label>
 	            <div class="col-sm-10">
-	              <input type="text" class="form-control" name="total_coin" id="total_coin" value="{{ $customer->total_coin }}" />
-	              @error('total_coin')
-	                <span class="text-danger">{{ $message }}</span>
-	              @enderror
+	              <input type="text" class="form-control" value="{{ $customer->email }}" readonly />
 	            </div>
           	</div>
           	<div class="row mb-3">
@@ -84,40 +81,6 @@
     </div>
   </div>
 
-  <!--password block-->
-  <div class="col-md-12">
-    <div class="card mb-4">
-      <h5 class="card-header">Change Password</h5>
-      <!-- Account -->
-      <hr class="my-0">
-      
-      <div class="card-body">
-        
-        <form action="{{ route('change-password',$customer->id) }}" method="POST">
-          @csrf
-          <div class="row">
-            <div class="mb-3 col-md-6">
-              <label for="new_password" class="form-label">New Password</label>
-              <input name="new_password" type="password" class="form-control" id="new_password" placeholder="New Password">
-              @error('new_password')
-                <span class="text-danger">{{ $message }}</span>
-              @enderror
-            </div>
-            <div class="mb-3 col-md-6">
-              <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
-              <input name="new_password_confirmation" type="password" class="form-control" id="new_password_confirmation" placeholder="Confirm New Password">
-            </div>
-          </div>
-          <div class="mt-2">
-            <button type="submit" class="btn btn-primary me-2">Confirm</button>
-          </div>
-        </form>
-      </div>
-      <!-- /Account -->
-    </div>
-
-  </div>
-  <!--end change password block-->
 
 </div>
 @endsection

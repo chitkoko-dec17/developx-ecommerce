@@ -63,4 +63,9 @@ class Customer extends Authenticatable
         return $this->hasMany('App\Models\CustomerOrder'); 
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

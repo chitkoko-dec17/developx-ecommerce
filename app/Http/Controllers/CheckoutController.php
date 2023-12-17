@@ -32,11 +32,13 @@ class CheckoutController extends Controller
         }
 
         $customer = array();
+        $last_order = array();
         if( auth()->guard('customer')->check() ){
             $customer = Customer::where('id', Auth::guard('customer')->id())->first();
+            $last_order = Order::where('customer_id', Auth::guard('customer')->id())->orderBy('id','DESC')->limit(1)->first();
         }
 
-        return view('frontend.checkout', compact('customer'));
+        return view('frontend.checkout', compact('customer','last_order'));
     }
 
 

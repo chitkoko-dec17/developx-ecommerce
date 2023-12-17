@@ -40,8 +40,20 @@ class HomeController extends Controller
 
     public function product_list(Request $request)
     {
-        
-        return view('frontend.product');
+        // Check for search input
+        // Get the search value from the request
+        $search = $request->input('q');
+        if($search){
+          $products = Product::query()
+                ->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('sku', 'LIKE', "%{$search}%")
+                ->latest()
+                ->paginate(20);
+
+        }else{
+          $products = Product::paginate(20); 
+        }
+        return view('frontend.product',compact('products','search'));
     }
 
     public function login()

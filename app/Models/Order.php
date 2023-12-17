@@ -50,4 +50,14 @@ class Order extends Model
         'tracking_code',
         'order_note',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class,'customer_id');
+    }
+
+    public function order_products()
+    {
+        return $this->hasMany(OrderProduct::class,'order_id');
+    }
 }

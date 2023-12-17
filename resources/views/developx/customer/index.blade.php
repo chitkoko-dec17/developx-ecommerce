@@ -52,17 +52,22 @@
 		          	<tr>
 			            <th>Name</th>
 			            <th>Phone</th>
-			            <th width="110">Coin</th>
+			            <th width="110">Email</th>
 			            <th width="110">Status</th>
 			            <th width="120">Actions</th>
 		          	</tr>
 		        </thead>
 		        <tbody>
 		        	@forelse($customers as $customer)
+		        		@php
+		        			$first_name = ($customer->first_name) ? $customer->first_name : "";
+		        			$last_name = ($customer->last_name) ? $customer->last_name : "";
+		        			$fullname = $first_name .' '. $last_name;
+		        		@endphp
 		        		<tr>
-				            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $customer->name }}</strong></td>
+				            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $fullname }}</strong></td>
 				            <td>{{ $customer->phone }}</td>
-				            <td>{{ $customer->total_coin }}</td>
+				            <td>{{ $customer->email }}</td>
 				            <td>
 				            	@if($customer->status == 'active') 
 				            	<span class="badge bg-label-primary me-1">Active</span>
@@ -71,13 +76,10 @@
 				            	@endif
 				            </td>
 				            <td>
-				              	<div class="dropdown">
-					                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-					                <div class="dropdown-menu">
-					                  	<a class="dropdown-item" href="{{ route('customer.edit',$customer->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-					                  	<a class="dropdown-item cust_dele_id" data-id="{{$customer->id}}" href="javascript:void(0)"><i class="bx bx-trash me-1"></i> Delete</a>
-					                </div>
-				              	</div>
+				            	<div class="d-inline-block text-nowrap">
+				            		<a href="{{ route('customer.edit',$customer->id) }}" class="btn btn-sm btn-icon edit-record" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" aria-label="View" data-bs-original-title="Edit"><i class="bx bx-edit"></i></a>
+				            	</div>
+				            	<!-- <a class="dropdown-item cust_dele_id" data-id="{{$customer->id}}" href="javascript:void(0)"><i class="bx bx-trash me-1"></i> Delete</a> -->
 				            </td>
 			          	</tr>
 		        	@empty
