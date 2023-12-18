@@ -156,8 +156,10 @@ class ProductController extends Controller
             $old_product_image = $product->image;
 
             //delete old image in the product image directory
-            if(file_exists(public_path($old_product_image))){
-                unlink(public_path($old_product_image));
+            if($old_product_image){
+              if(file_exists(public_path($old_product_image))){
+                  unlink(public_path($old_product_image));
+              }
             }
 
             //create file name

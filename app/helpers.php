@@ -10,7 +10,7 @@ function presentDate($date)
 
 function productImage($path)
 {
-  return $path && file_exists($path) ? asset($path) : asset('img/not-found.jpg');
+  return $path && file_exists($path) ? asset($path) : asset('assets/img/image-preview.jpg');
 }
 
 //return countries array
