@@ -105,26 +105,4 @@ class CustomerController extends BaseController
         return $this->sendResponse($success, 'You have been successfully logged out!');
     }
 
-    public function get_customer_coin_history($id){
-        $customer_coin_history = CustomerCoinLogs::where('customer_id', $id)->orderBy('id', 'desc')->get()->toArray();
-
-        $format_customer_chist = array();
-        foreach($customer_coin_history as $ind => $ch){
-
-            $price = ($ch['price']) ? " (".$ch['price']."ကျပ်)" : "";
-
-            $format_customer_chist[$ind]['id'] = $ch['id'];
-            $format_customer_chist[$ind]['coin'] = $ch['coin'] . $price;
-            $formatdate = strtotime( $ch['created_at'] );
-            $format_customer_chist[$ind]['process_date'] = date('M j, Y - h:i A', $formatdate);
-            if($ch['coin_log_type'] == "topup"){
-                $format_customer_chist[$ind]['usage_type'] = "+Top Up";
-            }elseif($ch['coin_log_type'] == "used"){
-                $format_customer_chist[$ind]['usage_type'] = "-Coin Used";
-            }
-        }
-        $success['customer_coin_history'] =  $format_customer_chist;
-        return $this->sendResponse($success, 'Customer Coin History Data');
-    }
-
 }

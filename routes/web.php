@@ -33,7 +33,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/detail/{product}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/contact', [HomeController::class, 'contact']);
-Route::get('/product_list', [HomeController::class, 'product_list']);
+Route::get('/product_list', [HomeController::class, 'product_list'])->name('product.search');
 Route::get('/customer/login', [HomeController::class, 'login'])->name('customer.login');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
