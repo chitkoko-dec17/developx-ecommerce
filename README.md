@@ -19,11 +19,11 @@
 ### Test Accounts for admin and customer
 
 ```bash
-Admin URL  = http://localhost:8000/admin
+Backend URL  = http://localhost:8000/admin
 Username = chitkoko@developx.com
 Password = password
 
-Admin URL  = http://localhost:8000/customer/login
+Frontend URL  = http://localhost:8000/customer/login
 Username = chitkoko@gmail.com
 Password = 123456
 ```
